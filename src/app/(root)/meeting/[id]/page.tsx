@@ -1,8 +1,8 @@
 'use client'
+import Alert from "@/components/Alert"
 import Loader from "@/components/Loader"
 import MeetingRoom from "@/components/MeetingRoom"
 import MeetingSetup from "@/components/MeetingSetup"
-import { Alert } from "@/components/ui/alert"
 import { useGetCallById } from "@/hooks/GetCallbyId"
 import { useUser } from "@clerk/nextjs"
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk"

@@ -24,7 +24,7 @@ const MeetingTypeList = (props: Props) => {
   const{user}=useUser()
   const client=useStreamVideoClient()
   const{toast}=useToast()
-  console.log(callDetail)
+  // console.log(callDetail)
 
   const createMeeting=async()=>{
     if(!client || !user)return ;
