@@ -53,13 +53,16 @@ const CallList = ({type}: Props) => {
         }
     },[type,callRecordings])
     const calls=getCalls()
-    // console.log((calls[0] as CallRecording)?.start_time?.to)
+    // console.log((calls[0] as CallRecording)?.start_time)
     const noCallMessage=getNOCallsMessage()
     if(isLoading) return <Loader/>
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
         {calls && calls.length>0?(
-            calls.map((meeting:Call|CallRecording)=>(
+            calls.map((meeting:Call|CallRecording)=>{
+                console.log((meeting as CallRecording).start_time)
+                // console.log((meeting as Call).state?.startsAt)
+                return(
                     <MeetingCard key={(meeting as Call).id} icon={
                         type==="ended"
                         ?'/icons/previous.svg'
@@ -72,7 +75,7 @@ const CallList = ({type}: Props) => {
                     }
                     date={
                         (meeting as Call).state?.startsAt?.toLocaleString() ||
-                        (meeting as CallRecording).start_time?.toLocaleString()
+                        (meeting as CallRecording)?. start_time.toLocaleString().split('T')[0]
                     }
                     isPreviousMeeting={type === 'ended'}
                     link={
@@ -88,10 +91,11 @@ const CallList = ({type}: Props) => {
                         : () => router.push(`/meeting/${(meeting as Call).id}`)
                     }
                     />
-                )
+                )}
+                
                 )
         ):(
-            <h1 className="text-2xl font-bold text-white" >{noCallMessage}</h1>
+            <h1 className="text-2xl font-bold " >{noCallMessage}</h1>
         )
     }
     </div>

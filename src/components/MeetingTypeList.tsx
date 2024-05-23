@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation"
 import HomeCard from "./HomeCard"
-import { useState } from "react"
+import { ChangeEventHandler, useState } from "react"
 import MeetingModal from "./MeetingModal"
 import { useUser } from "@clerk/nextjs"
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk"
@@ -25,6 +25,7 @@ const MeetingTypeList = (props: Props) => {
   const client=useStreamVideoClient()
   const{toast}=useToast()
   // console.log(callDetail)
+  // const[scheduleMeetingError,setScheduleMeetingError]=useState(true)
 
   const createMeeting=async()=>{
     if(!client || !user)return ;
@@ -47,6 +48,7 @@ const MeetingTypeList = (props: Props) => {
         },
       })
       setCallDetail(call)
+      // Looks stupid move👁️
       if(!values.description){
         router.push(`/meeting/${call.id}`)
       }
@@ -59,7 +61,7 @@ const MeetingTypeList = (props: Props) => {
    }
    if(!client ||!user) return <Loader/>
    const meetingLink=`${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`
-
+ 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
       <HomeCard img="/icons/add-meeting.svg" title
@@ -76,15 +78,16 @@ const MeetingTypeList = (props: Props) => {
         onClose={()=>setMeetingState(undefined)} title="Create Meeting" handleClick={createMeeting}>
           <div className="flex flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
-            Add a description
+            Add a description*
             </label>
-              <Textarea  className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0" onChange={(e)=>setValues({...values,description:e.target.value})}/>
+              <Textarea  className="border-none bg-gray-200 dark:bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"  onChange={(e)=>setValues({...values,description:e.target.value})}
+            />
           </div>
           <div  className="flex w-full flex-col gap-2.5">
-            <label className="text-base font-normal leading-[22.4px] text-sky-2">
+            <label className="text-base font-normal leading-[22.4px] ">
               Select Date and Time
             </label>
-            <ReactDatePicker selected={values.dateTime} onChange={(date)=>setValues({...values,dateTime:date!})} showTimeSelect timeFormat="HH:mm" timeIntervals={15} timeCaption="time" dateFormat="MMMM d, yyyy h:mm aa" className="w-full rounded-lg bg-dark-3 p-2 focus:outline-none"/>
+            <ReactDatePicker selected={values.dateTime} onChange={(date)=>setValues({...values,dateTime:date!})} showTimeSelect timeFormat="HH:mm" timeIntervals={15} timeCaption="time" dateFormat="MMMM d, yyyy h:mm aa" className="w-full rounded-lg bg-gray-200 dark:bg-dark-3 p-2 focus:outline-none"/>
           </div>
         </MeetingModal>
       ):(
@@ -101,7 +104,7 @@ const MeetingTypeList = (props: Props) => {
       onClose={()=>setMeetingState(undefined)} title="Create Meeting" handleClick={createMeeting} />
       {/* joining Meeting */}
       <MeetingModal isOpen={meetingState==="isJoiningMeeting"} onClose={()=>setMeetingState(undefined)} title="Type the link here" className="text-center" buttonText="Join Meeting" handleClick={()=>router.push(values.link)}>
-        <Input placeholder="Meeting link" onChange={(e)=>setValues({...values,link:e.target.value})} className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"/>
+        <Input placeholder="Meeting link" onChange={(e)=>setValues({...values,link:e.target.value})} className="border-none bg-gray-200  dark:bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"/>
         </MeetingModal>
     </section>
   )

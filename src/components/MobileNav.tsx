@@ -18,7 +18,7 @@ const MobileNav = (props: Props) => {
             </SheetTrigger>
             <SheetContent side="left" className="border-none bg-dark-1">
               <Link href="/" className="flex items-center gap-1 " >
-                <Image src={'/icons/logo.svg'} alt="xoom logo" width={32}height={32}/>
+                <Image src={'/icons/logo.svg'} alt="xoom logo" width={32} height={32}/>
                 <p className="text-[26px] font-extrabold text-white">XOOM</p>
               </Link>
               <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">

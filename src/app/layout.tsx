@@ -6,8 +6,9 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { ThemeProvider } from "@/Providers/theme-provider";
 export const metadata: Metadata = {
-  title: "ZOOM",
+  title: "XOOM",
   description: "Video calling application",
   icons:'/icons/logo.svg'
 };
@@ -21,9 +22,9 @@ export default function RootLayout({
     <html lang="en">
           <ClerkProvider appearance={{
             layout:{
-              socialButtonsVariant: "iconButton",
+              socialButtonsVariant: "blockButton",
               logoImageUrl: "/icons/yoom-logo.svg",
-
+              
             },
             variables:{
               colorText: "#fff",
@@ -31,12 +32,14 @@ export default function RootLayout({
               colorBackground: "#1C1F2E",
               colorInputBackground: "#252A41",
               colorInputText: "#fff",
-
+              
             }
           }}>
-              <body className={`${inter.className} bg-dark-2`}>
-                {children}
-                <Toaster/>
+            <body className={`${inter.className}  `}>
+              <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+                  {children}
+              </ThemeProvider>
+                  <Toaster/>
               </body>
           </ClerkProvider>
       </html>

@@ -3,7 +3,7 @@ import CallList from "@/components/CallList"
 type Props = {}
 const PreviousPage = (props: Props) => {
   return (
-    <section className="flex size w-full flex-col gap-10 text-white">
+    <section className="flex size w-full flex-col gap-10 ">
       <h1 className="text-3xl font-bold">
         Previous
       </h1>
