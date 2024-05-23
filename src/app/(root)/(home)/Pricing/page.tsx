@@ -23,7 +23,7 @@ export interface PricingTier {
   soldOut?: boolean;
 }
 
-export const frequencies: PricingTierFrequency[] = [
+ const frequencies: PricingTierFrequency[] = [
   { id: '1', value: '1', label: 'Monthly', priceSuffix: '/month' },
   { id: '2', value: '2', label: 'Annually', priceSuffix: '/year' },
 ];
@@ -108,7 +108,7 @@ const CheckIcon = ({ className }: { className?: string }) => {
 const cn = (...args: Array<string | boolean | undefined | null>) =>
   args.filter(Boolean).join(' ');
 
-const  PricingPage=() =>{
+const  PricingPage=()=>{
   const [frequency, setFrequency] = useState(frequencies[0]);
 
   const bannerText = '50% Off! Get Started for Only $3.99/month🥳🎉';
