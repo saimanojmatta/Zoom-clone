@@ -108,7 +108,7 @@ const CheckIcon = ({ className }: { className?: string }) => {
 const cn = (...args: Array<string | boolean | undefined | null>) =>
   args.filter(Boolean).join(' ');
 
-export default function PricingPage() {
+const  PricingPage=() =>{
   const [frequency, setFrequency] = useState(frequencies[0]);
 
   const bannerText = '50% Off! Get Started for Only $3.99/month🥳🎉';
@@ -312,3 +312,4 @@ export default function PricingPage() {
     </div>
   );
 }
+export default PricingPage
