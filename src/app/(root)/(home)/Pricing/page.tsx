@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import styles from './pricing.module.css';
 
-export interface PricingTierFrequency {
+ interface PricingTierFrequency {
   id: string;
   value: string;
   label: string;
   priceSuffix: string;
 }
 
-export interface PricingTier {
+ interface PricingTier {
   name: string;
   id: string;
   href: string;
@@ -28,7 +28,7 @@ export interface PricingTier {
   { id: '2', value: '2', label: 'Annually', priceSuffix: '/year' },
 ];
 
-export const tiers: PricingTier[] = [
+ const tiers: PricingTier[] = [
   {
     name: 'Free',
     id: '0',
