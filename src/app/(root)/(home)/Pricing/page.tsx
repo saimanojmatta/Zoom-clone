@@ -223,9 +223,9 @@ const  PricingPage=()=>{
                     className={cn(
                       tier.featured ? 'text-white dark:text-black' : 'text-black dark:text-white',
                       'text-4xl font-bold tracking-tight',
-                      tier.discountPrice && tier.discountPrice[frequency.value]
-                        ? 'line-through'
-                        : '',
+                      tier.discountPrice 
+                        ? ''
+                        : 'line-through',
                     )}
                   >
                     {typeof tier.price === 'string'
